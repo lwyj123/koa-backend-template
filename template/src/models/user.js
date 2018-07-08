@@ -70,4 +70,12 @@ UserSchema.methods.comparePassword = function (passw, cb) {
   })
 }
 
+UserSchema.statics.getUserInfoById = async (id) => {
+  const user = await this.find({id: id})
+  if (user) {
+    return user.toObject()
+  }
+  return null
+}
+
 module.exports = mongoose.model('User', UserSchema)
